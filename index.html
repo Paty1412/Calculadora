@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha calculadora</title>
+    <body>
+      <div class="fundo">
+          <h1>Vamos Calcular.......</h1>  
+            <div class="calculadora"> <!----não é preciso fechar a div----->
+            <h3>Resultado</h3>
+            <p id="resultado"></p>  
+         <table>
+            <tr>
+
+               <td><button class="botão"onclick="cleanResultado()">C</button></td> <!-----indica que o botão vau ser cinza---->
+               <td><button class="botão"onclick="back()">Del</button></td> <!---o TD os numeros fican em formato quadrado-->
+               <td><button class="botão"onclick="insert('%')">%</button></td>
+               <td><button class="botão"onclick="insert('/')">/</button></td>
+           </tr>
+           <tr> 
+             
+               <td><button class="button" onclick="insert ('7')">7</button></td> 
+               <td><button class="button" onclick="insert('8')">8</button></td>
+               <td><button class="button"onclick="insert('9')">9</button></td>
+               <td><button class="botão"onclick="insert('*')">*</button></td>
+           </tr>
+           <tr>
+             
+               <td><button class="button" onclick="insert ('4')">4</button></td> 
+               <td><button class="button"onclick="insert ('5')">5</button></td>
+               <td><button class="button"onclick="insert ('6')">6</button></td>
+               <td><button class="botão"onclick="insert('-')">-</button></td>
+           </tr>
+           <tr>  
+
+              <td><button class="button"onclick="insert ('1')">1</button></td> 
+              <td><button class="button"onclick="insert ('2')">2</button></td>
+              <td><button class="button"onclick="insert ('3')">3</button></td>
+              <td><button class="botão"onclick="insert('+')">+</button></td>
+        
+           </tr> <!---Rowspan iria deixar o numero grande na vertical-->
+           <tr>  
+        <td  colspan="2"><button class="button" style="width:122px;px">0</button></td> <!--colspan para deixar o numero na horizontal-->
+        <td><button class="button"onclick="insert(',')">,</button></td>
+        <td><button class="botão"onclick="calcular()">=</button></td>
+     
+      </tr>
+      </table>
+    </div>   
+    <style>
+   *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+     .fundo{ 
+       background-image:linear-gradient(45deg,rgb(218, 228, 84),rgb(217, 226, 205)); 
+       height: 100vh;
+       width: 100%;
+       font-family: Arial, Helvetica, sans-serif
+       text-align:center;
+    
+    }
+    .body{   /*deixar os número ao centro*/
+     display:grid;
+     grid-template-columns: repeat(4,1fr);
+     grid: gap 30px;
+     margin: 4px;
+     background-color: aliceblue;
+    }
+    .calculadora {
+         transform: translate(-50%,-50%);
+         position: absolute;
+         width: 300px;
+         background-color:rgb(100, 98, 94);
+         border-radius: 10px;               /*bordas*/
+         box: 4px; 5px 4px:#00000040;
+         font-family: *Helvetica Neve*, sans-serif ;
+         top: 50%;
+         left: 50%;
+         padding: 15px;
+    }
+    .botão{
+         width: 60px;
+         height: 60px;
+         border-radius: 50px;
+         background-color: orange;
+         font-size: 25px;
+         cursor: pointer;
+         border:none;
+         margin: 4;
+      }
+      .botão:hover{
+         background-color: rgb(219, 194, 148);
+         width: 60px;
+         height: 60px;
+         cursor: pointer;
+         border:none;
+      }
+      .button{
+         background-color: rgb(201, 191, 191);
+         width: 60px;
+         height: 60px;
+         font-size: 25px;
+         cursor: pointer;
+         border:none;
+         margin:0px;
+         color:#fff;
+         border-radius: 50px;
+      }
+      .button:hover{
+         background-color: rgb(100, 98, 94);
+         width: 50px;
+         height:60px;
+         cursor: pointer;
+         border:none;
+      }             
+      #resultado{
+          background-color: aliceblue; 
+          width: 240px;
+          height: 40px;
+          margin:5px;
+          font-size: 25px;
+          color: rgb(4, 21, 36);
+      }      
+   </style>   
+</head>
+
+    </table>
+  </div>   
+  <script>
+      function insert(num)
+      {
+          var numero = document.getElementById('resultado').innerHTML;
+          document.getElementById('resultado').innerHTML = numero + num
+      }
+      function cleanResultado()
+      {
+         document.getElementById('resultado').innerHTML = ""
+      }
+      function back() 
+      {
+        var resultado = document.getElementById('resultado').innerHTML
+        document.getElementById('resultado').innerHTML = resultado.substring(0,resultado.length -1);
+      }
+      function calcular()
+      {
+      
+         var resultado = document.getElementById('resultado').innerHTML
+         if(resultado)
+         {
+            document.getElementById('resultado').innerHTML = eval(resultado);
+         }
+         else
+         {
+            document.getElementById('resultado').innerHTML = "0,0";
+         }
+      }
+
+
+  </script>
+
+ <script index src="index.js"></script>
+
+</body>
+</html>
